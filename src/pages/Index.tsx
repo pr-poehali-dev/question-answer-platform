@@ -44,7 +44,7 @@ const questions: Question[] = [
 ];
 
 const Index = () => {
-  const [currentScreen, setCurrentScreen] = useState<'welcome' | 'game' | 'result'>('welcome');
+  const [currentScreen, setCurrentScreen] = useState<'welcome' | 'rules' | 'game' | 'result'>('welcome');
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showError, setShowError] = useState(false);
@@ -147,9 +147,9 @@ const Index = () => {
         ))}
       </div>
 
-      <div className="christmas-tree fixed bottom-0 right-4 z-0">
+      <div className="christmas-tree fixed bottom-0 right-16 z-0">
         <div className="relative">
-          <div className="text-8xl animate-pulse-slow">🎄</div>
+          <div className="text-8xl">🎄</div>
           <div className="absolute inset-0 pointer-events-none">
             {[...Array(8)].map((_, i) => (
               <div
@@ -203,15 +203,61 @@ const Index = () => {
                     жмакать сюда чтобы стать счастливой
                     <Icon name="Heart" className="ml-2" size={20} />
                   </Button>
+                  <Button 
+                    size="lg" 
+                    variant="outline"
+                    onClick={() => setCurrentScreen('rules')}
+                    className="text-lg px-8 py-6 border-2 border-primary/50 hover:bg-primary/10"
+                  >
+                    <Icon name="BookOpen" className="mr-2" size={20} />
+                    Правила
+                  </Button>
                 </div>
               </CardContent>
             </Card>
 
-            <div className="flex justify-center gap-2 text-4xl">
-              <span className="animate-twinkle mx-[15px] my-0" style={{ animationDelay: '0s' }}>⭐</span>
-              <span className="animate-twinkle" style={{ animationDelay: '0.3s' }}>✨</span>
-              <span className="animate-twinkle" style={{ animationDelay: '0.6s' }}>💫</span>
-            </div>
+
+          </div>
+        )}
+
+        {currentScreen === 'rules' && (
+          <div className="max-w-2xl mx-auto space-y-6 animate-in fade-in duration-500">
+            <Button 
+              variant="ghost" 
+              onClick={() => setCurrentScreen('welcome')}
+              className="mb-4 hover:bg-primary/10"
+            >
+              <Icon name="ArrowLeft" className="mr-2" size={20} />
+              Назад
+            </Button>
+
+            <Card className="backdrop-blur-sm bg-card/80 border-2 border-secondary/30 shadow-2xl">
+              <CardHeader>
+                <CardTitle className="text-3xl font-heading text-center text-secondary">
+                  <Icon name="Sparkles" className="inline mr-2" size={28} />
+                  Правила игры
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="space-y-4 text-lg">
+                  <div className="flex items-start gap-3 p-4 bg-primary/5 rounded-lg">
+                    <span className="text-2xl">🤷</span>
+                    <div>
+                      <p className="text-muted-foreground">вот будто бы без знаний правил ты не справилась бы, ну лааан, крч отвечай на вопросы и продвигайся по квесту, хуй его знает как себя поведет сайт на твоем ипхоне, но надеюсь не поломается, хотя если ты это читаешь то значит работает, в общем давай уже проходи, а я пока еще стопочку наебну тут, за тебя конечно же)</p>
+                    </div>
+                  </div>
+                </div>
+
+                <Button 
+                  size="lg"
+                  onClick={() => setCurrentScreen('game')}
+                  className="w-full text-lg py-6 bg-secondary hover:bg-secondary/90"
+                >
+                  Начать тест
+                  <Icon name="Play" className="ml-2" size={20} />
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         )}
 
@@ -297,11 +343,7 @@ const Index = () => {
                 </CardContent>
               </Card>
 
-              <div className="flex justify-center gap-3 text-5xl animate-bounce-slow">
-                <span>🎉</span>
-                <span>💝</span>
-                <span>✨</span>
-              </div>
+
             </div>
           </div>
         )}
