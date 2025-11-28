@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -74,6 +74,28 @@ const Index = () => {
     }, 1500);
   };
 
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio('/novogodnie-igrushki.mp3');
+    audioRef.current.loop = true;
+    audioRef.current.volume = 0.3;
+    
+    const playAudio = () => {
+      audioRef.current?.play().catch(err => console.log('Audio play failed:', err));
+    };
+
+    document.addEventListener('click', playAudio, { once: true });
+
+    return () => {
+      document.removeEventListener('click', playAudio);
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+
   const resetGame = () => {
     setCurrentQuestion(0);
     setScore(0);
@@ -105,7 +127,7 @@ const Index = () => {
         {currentScreen === 'welcome' && (
           <div className="max-w-2xl mx-auto text-center space-y-8 animate-in fade-in duration-700">
             <div className="space-y-4">
-              <h1 className="text-6xl md:text-7xl font-heading font-bold text-primary animate-float">
+              <h1 className="text-6xl md:text-7xl font-heading font-bold text-primary">
                 С Новым Годом! ✨
               </h1>
               <p className="text-2xl text-foreground/80 font-light">
@@ -115,10 +137,11 @@ const Index = () => {
 
             <Card className="backdrop-blur-sm bg-card/80 border-2 border-accent/30 shadow-2xl">
               <CardContent className="pt-8 space-y-6">
-                <div className="text-accent text-6xl animate-twinkle">💝</div>
+                <div className="flex justify-center">
+                  <img src="/gift-image.jpg" alt="Gift" className="w-48 h-48 object-cover rounded-full shadow-lg" />
+                </div>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Я подготовил для тебя особенное путешествие через наши самые тёплые моменты. 
-                  Пройди этот квиз и узнай, что я приготовил в финале!
+                  привет диан, это мой небольшой квестик для тебя, надеюсь тебе понравится, в конце так же тебя ждет поздравление и код от коробочки&lt;3
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
                   <Button 
@@ -126,7 +149,7 @@ const Index = () => {
                     onClick={() => setCurrentScreen('rules')}
                     className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all"
                   >
-                    Начать путешествие
+                    жмакать сюда чтоби стать счастливой
                     <Icon name="Heart" className="ml-2" size={20} />
                   </Button>
                   <Button 
@@ -170,35 +193,10 @@ const Index = () => {
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-4 text-lg">
-                  <div className="flex items-start gap-3 p-4 bg-secondary/5 rounded-lg">
-                    <span className="text-2xl">🎯</span>
-                    <div>
-                      <h3 className="font-semibold text-secondary mb-1">Цель</h3>
-                      <p className="text-muted-foreground">Ответить на {questions.length} вопросов о нас и нашей любви</p>
-                    </div>
-                  </div>
-
                   <div className="flex items-start gap-3 p-4 bg-primary/5 rounded-lg">
-                    <span className="text-2xl">💖</span>
+                    <span className="text-2xl">🤷</span>
                     <div>
-                      <h3 className="font-semibold text-primary mb-1">Как играть</h3>
-                      <p className="text-muted-foreground">Читай вопросы и выбирай ответ, который кажется правильным. Здесь нет неправильных ответов — только те, что идут от сердца!</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3 p-4 bg-accent/10 rounded-lg">
-                    <span className="text-2xl">⭐</span>
-                    <div>
-                      <h3 className="font-semibold text-accent-foreground mb-1">Прогресс</h3>
-                      <p className="text-muted-foreground">Следи за своим путём по волшебной гирлянде вверху экрана</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3 p-4 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg border-2 border-accent/30">
-                    <span className="text-2xl">🎁</span>
-                    <div>
-                      <h3 className="font-semibold mb-1">Сюрприз</h3>
-                      <p className="text-muted-foreground">В конце тебя ждёт особенный подарок! ✨</p>
+                      <p className="text-muted-foreground">вот будто бы без знаний правил ты не справилась бы, ну лааан, крч отвечай на вопросы и продвигайся по квесту, хуй его знает как себя поведет сайт на твоем ипхоне, но надеюсь не поломается, хотя если ты это читаешь то значит работает, в общем давай уже проходи, а я пока еще стопочку наебну тут, за тебя конечно же)</p>
                     </div>
                   </div>
                 </div>
