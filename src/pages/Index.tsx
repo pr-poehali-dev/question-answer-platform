@@ -138,7 +138,7 @@ const Index = () => {
             <Card className="backdrop-blur-sm bg-card/80 border-2 border-accent/30 shadow-2xl">
               <CardContent className="pt-8 space-y-6">
                 <div className="flex justify-center">
-                  <img src="/gift-image.jpg" alt="Gift" className="w-48 h-48 object-cover rounded-full shadow-lg" />
+                  <img src="https://cdn.poehali.dev/files/c4ca95af-bd8d-48d5-afff-841a435b2007.jpg" alt="Gift" className="w-64 h-64 object-cover rounded-2xl shadow-2xl border-4 border-accent/30" />
                 </div>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   привет диан, это мой небольшой квестик для тебя, надеюсь тебе понравится, в конце так же тебя ждет поздравление и код от коробочки&lt;3
