@@ -166,7 +166,7 @@ const Index = () => {
             </Card>
 
             <div className="flex justify-center gap-2 text-4xl">
-              <span className="animate-twinkle" style={{ animationDelay: '0s' }}>⭐</span>
+              <span className="animate-twinkle mx-[15px] my-0" style={{ animationDelay: '0s' }}>⭐</span>
               <span className="animate-twinkle" style={{ animationDelay: '0.3s' }}>✨</span>
               <span className="animate-twinkle" style={{ animationDelay: '0.6s' }}>💫</span>
             </div>
