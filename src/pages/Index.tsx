@@ -74,25 +74,38 @@ const Index = () => {
     }, 1500);
   };
 
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const playerRef = useRef<any>(null);
 
   useEffect(() => {
-    audioRef.current = new Audio('/novogodnie-igrushki.mp3');
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.3;
-    
-    const playAudio = () => {
-      audioRef.current?.play().catch(err => console.log('Audio play failed:', err));
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+
+    (window as any).onYouTubeIframeAPIReady = () => {
+      playerRef.current = new (window as any).YT.Player('youtube-player', {
+        videoId: 'VlMUBWOHoa8',
+        playerVars: {
+          autoplay: 0,
+          loop: 1,
+          playlist: 'VlMUBWOHoa8',
+          controls: 0,
+        },
+        events: {
+          onReady: (event: any) => {
+            event.target.setVolume(30);
+            const playAudio = () => {
+              event.target.playVideo();
+              document.removeEventListener('click', playAudio);
+            };
+            document.addEventListener('click', playAudio, { once: true });
+          },
+        },
+      });
     };
 
-    document.addEventListener('click', playAudio, { once: true });
-
     return () => {
-      document.removeEventListener('click', playAudio);
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
+      playerRef.current?.destroy();
     };
   }, []);
 
@@ -106,6 +119,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-secondary/10 relative overflow-hidden font-body">
+      <div id="youtube-player" className="absolute" style={{ opacity: 0, pointerEvents: 'none', width: '1px', height: '1px' }}></div>
+      
       <div className="snowflakes absolute inset-0 pointer-events-none">
         {[...Array(20)].map((_, i) => (
           <div
