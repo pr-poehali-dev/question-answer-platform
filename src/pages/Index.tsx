@@ -147,7 +147,7 @@ const Index = () => {
         ))}
       </div>
 
-      <div className="christmas-tree fixed bottom-0 right-16 z-0">
+      <div className="christmas-tree fixed bottom-0 left-4 z-0">
         <div className="relative">
           <div className="text-8xl">🎄</div>
           <div className="absolute inset-0 pointer-events-none">
