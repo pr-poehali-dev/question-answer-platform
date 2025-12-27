@@ -74,6 +74,7 @@ const Index = () => {
   };
 
   const playerRef = useRef<any>(null);
+  const [musicStarted, setMusicStarted] = useState(false);
 
   useEffect(() => {
     const tag = document.createElement('script');
@@ -93,11 +94,6 @@ const Index = () => {
         events: {
           onReady: (event: any) => {
             event.target.setVolume(30);
-            const playAudio = () => {
-              event.target.playVideo();
-              document.removeEventListener('click', playAudio);
-            };
-            document.addEventListener('click', playAudio, { once: true });
           },
         },
       });
@@ -107,6 +103,29 @@ const Index = () => {
       playerRef.current?.destroy();
     };
   }, []);
+
+  const startMusic = () => {
+    if (playerRef.current && !musicStarted) {
+      try {
+        playerRef.current.playVideo();
+        setMusicStarted(true);
+      } catch (error) {
+        console.error('Failed to play music:', error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const handleClick = () => {
+      startMusic();
+    };
+    
+    document.addEventListener('click', handleClick, { once: true });
+    
+    return () => {
+      document.removeEventListener('click', handleClick);
+    };
+  }, [musicStarted]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-secondary/10 relative overflow-hidden font-body">
