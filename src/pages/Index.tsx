@@ -77,7 +77,7 @@ const Index = () => {
   const [musicStarted, setMusicStarted] = useState(false);
 
   useEffect(() => {
-    const audio = new Audio('https://drive.google.com/uc?export=download&id=1TJjcyjhyEyymVasLiTPdiXzChMMaRW0A');
+    const audio = new Audio('https://files.catbox.moe/2fiwkp.mp3');
     audio.loop = true;
     audio.volume = 0.3;
     audioRef.current = audio;
@@ -337,9 +337,12 @@ const Index = () => {
                     ну че сказать, надеюсь в этом году мы оба очень сильно постараемся и наконец съедемся, а пока желаю хорошо отпраздновать этот новый год, впереди нас ждет еще много встреч
                   </p>
                   <div className="pt-4 flex justify-center">
-                    <img 
-                      src="https://drive.google.com/uc?export=download&id=17R_Rc4eSZzuPseC096pp1XRu7vhKMQUV" 
-                      alt="Celebration" 
+                    <video 
+                      src="https://files.catbox.moe/kh9bxc.mp4" 
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
                       className="max-w-full h-auto rounded-lg shadow-lg object-cover"
                       style={{ maxHeight: '400px' }}
                     />
