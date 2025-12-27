@@ -32,13 +32,13 @@ const questions: Question[] = [
   {
     id: 4,
     question: 'а ты помнишь как мы?',
-    answers: ['целовелись-целовались под луной', 'первый раз встретились', 'сидели на лавочке', 'лежали в обнимку'],
+    answers: ['целовались-целовались под луной', 'первый раз встретились', 'сидели на лавочке', 'лежали в обнимку'],
     correctAnswer: 0,
   },
   {
     id: 5,
     question: 'ну и наконец, кого я люблю больше всех на свете',
-    answers: ['тебяяяяя, да да именно тебя Диан, люблююю мямямяв'],
+    answers: ['тебяяяяя, да да именно тебя\nДиан, люблююю мямямяв'],
     correctAnswer: 0,
   },
 ];
@@ -137,13 +137,13 @@ const Index = () => {
             key={i}
             className="absolute animate-sway"
             style={{
-              left: `${15 + i * 18}%`,
+              left: `${5 + i * 20}%`,
               top: '5%',
               animationDelay: `${i * 0.5}s`,
               animationDuration: `${3 + Math.random() * 2}s`,
             }}
           >
-            <div className="text-6xl opacity-60 drop-shadow-lg">☃️</div>
+            <div className="text-5xl sm:text-6xl opacity-60 drop-shadow-lg">☃️</div>
           </div>
         ))}
       </div>
@@ -199,7 +199,7 @@ const Index = () => {
                   <Button 
                     size="lg" 
                     onClick={() => setCurrentScreen('game')}
-                    className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all"
+                    className="text-base sm:text-lg px-6 sm:px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all"
                   >
                     жмакать сюда чтобы стать счастливой
                     <Icon name="Heart" className="ml-2" size={20} />
