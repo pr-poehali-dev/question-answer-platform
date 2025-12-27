@@ -84,11 +84,11 @@ const Index = () => {
 
     (window as any).onYouTubeIframeAPIReady = () => {
       playerRef.current = new (window as any).YT.Player('youtube-player', {
-        videoId: 'VlMUBWOHoa8',
+        videoId: 'bVSFqWxRb3g',
         playerVars: {
           autoplay: 0,
           loop: 1,
-          playlist: 'VlMUBWOHoa8',
+          playlist: 'bVSFqWxRb3g',
           controls: 0,
         },
         events: {
@@ -352,12 +352,14 @@ const Index = () => {
               <Card className="backdrop-blur-sm bg-card/80 border-2 border-accent/30 shadow-2xl">
                 <CardContent className="pt-8 space-y-6">
                   <p className="text-xl text-muted-foreground leading-relaxed">
-                    ну че сказать, надеюсь в этом году мы оба очень сильно постараемся и наконец съедемся, а пока желаю хорошо отпраздновать этот новый год, впереди нас ждет еще много встреч, а теперь маленько меня в кадре
+                    ну че сказать, надеюсь в этом году мы оба очень сильно постараемся и наконец съедемся, а пока желаю хорошо отпраздновать этот новый год, впереди нас ждет еще много встреч
                   </p>
-                  <div className="pt-4">
-                    <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center text-gray-500">
-                      [Место для видео]
-                    </div>
+                  <div className="pt-4 flex justify-center">
+                    <img 
+                      src="YOUR_GIF_URL_HERE" 
+                      alt="Celebration" 
+                      className="max-w-full h-auto rounded-lg shadow-lg"
+                    />
                   </div>
                 </CardContent>
               </Card>
