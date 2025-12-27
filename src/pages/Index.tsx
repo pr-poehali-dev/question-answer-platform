@@ -356,9 +356,10 @@ const Index = () => {
                   </p>
                   <div className="pt-4 flex justify-center">
                     <img 
-                      src="YOUR_GIF_URL_HERE" 
+                      src="https://i.pinimg.com/originals/b3/8e/16/b38e1697b1ca87e7c6e54e3c8f98f3c2.gif" 
                       alt="Celebration" 
-                      className="max-w-full h-auto rounded-lg shadow-lg"
+                      className="max-w-full h-auto rounded-lg shadow-lg object-cover"
+                      style={{ transform: 'rotate(0deg)', maxHeight: '400px' }}
                     />
                   </div>
                 </CardContent>
