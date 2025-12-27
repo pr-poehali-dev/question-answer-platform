@@ -73,45 +73,27 @@ const Index = () => {
     }
   };
 
-  const playerRef = useRef<any>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const [musicStarted, setMusicStarted] = useState(false);
 
   useEffect(() => {
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-
-    (window as any).onYouTubeIframeAPIReady = () => {
-      playerRef.current = new (window as any).YT.Player('youtube-player', {
-        videoId: 'bVSFqWxRb3g',
-        playerVars: {
-          autoplay: 0,
-          loop: 1,
-          playlist: 'bVSFqWxRb3g',
-          controls: 0,
-        },
-        events: {
-          onReady: (event: any) => {
-            event.target.setVolume(30);
-          },
-        },
-      });
-    };
+    const audio = new Audio('https://drive.google.com/uc?export=download&id=1TJjcyjhyEyymVasLiTPdiXzChMMaRW0A');
+    audio.loop = true;
+    audio.volume = 0.3;
+    audioRef.current = audio;
 
     return () => {
-      playerRef.current?.destroy();
+      audio.pause();
+      audio.src = '';
     };
   }, []);
 
   const startMusic = () => {
-    if (playerRef.current && !musicStarted) {
-      try {
-        playerRef.current.playVideo();
-        setMusicStarted(true);
-      } catch (error) {
+    if (audioRef.current && !musicStarted) {
+      audioRef.current.play().catch(error => {
         console.error('Failed to play music:', error);
-      }
+      });
+      setMusicStarted(true);
     }
   };
 
@@ -129,7 +111,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-secondary/10 relative overflow-hidden font-body">
-      <div id="youtube-player" className="absolute" style={{ opacity: 0, pointerEvents: 'none', width: '1px', height: '1px' }}></div>
+
       
       <div className="snowflakes absolute inset-0 pointer-events-none z-0">
         {[...Array(40)].map((_, i) => (
@@ -356,10 +338,10 @@ const Index = () => {
                   </p>
                   <div className="pt-4 flex justify-center">
                     <img 
-                      src="https://i.pinimg.com/originals/b3/8e/16/b38e1697b1ca87e7c6e54e3c8f98f3c2.gif" 
+                      src="https://drive.google.com/uc?export=download&id=17R_Rc4eSZzuPseC096pp1XRu7vhKMQUV" 
                       alt="Celebration" 
                       className="max-w-full h-auto rounded-lg shadow-lg object-cover"
-                      style={{ transform: 'rotate(0deg)', maxHeight: '400px' }}
+                      style={{ maxHeight: '400px' }}
                     />
                   </div>
                 </CardContent>
