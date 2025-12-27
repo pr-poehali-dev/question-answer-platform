@@ -337,21 +337,12 @@ const Index = () => {
                     ну че сказать, надеюсь в этом году мы оба очень сильно постараемся и наконец съедемся, а пока желаю хорошо отпраздновать этот новый год, впереди нас ждет еще много встреч
                   </p>
                   <div className="pt-4 flex justify-center">
-                    <div className="relative w-full max-w-md">
-                      <video 
-                        src="https://files.catbox.moe/kh9bxc.mp4" 
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        controls
-                        className="w-full h-auto rounded-lg shadow-lg"
-                        onLoadedMetadata={(e) => {
-                          const video = e.currentTarget;
-                          video.play().catch(err => console.log('Video play failed:', err));
-                        }}
-                      />
-                    </div>
+                    <img 
+                      src="https://cdn.poehali.dev/files/425738dbef81784aa61feda697e1db14.jpg" 
+                      alt="Милые котики обнимаются"
+                      className="max-w-full h-auto rounded-lg shadow-lg object-cover"
+                      style={{ maxHeight: '400px' }}
+                    />
                   </div>
                 </CardContent>
               </Card>
