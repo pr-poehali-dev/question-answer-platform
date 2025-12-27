@@ -193,7 +193,7 @@ const Index = () => {
                   <img src="https://cdn.poehali.dev/files/c4ca95af-bd8d-48d5-afff-841a435b2007.jpg" alt="Gift" className="w-64 h-64 object-cover rounded-2xl shadow-2xl border-4 border-accent/30" />
                 </div>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  привет диан, это мой небольшой квестик для тебя, надеюсь тебе понравится, в конце так же тебя ждет поздравление и код от коробочки&lt;3
+                  привет диан, это мой небольшой квестик для тебя, надеюсь тебе понравится&lt;3
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
                   <Button 
